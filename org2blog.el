@@ -1336,6 +1336,9 @@ See messages below for details."
                         "inside of ‘org2blog-user-login’."))
         (format "%s" err))
        (throw 'return nil)))
+    (setq org2blog-logged-in t)
+    (message "You are now logged in to your blog “%s”"
+             org2blog-blog-key)
     (message "Loading tags…")
     (sit-for org2blog-step-time)
     (condition-case-unless-debug err
@@ -1355,10 +1358,7 @@ See messages below for details."
         (format (concat "I’m sorry I ran into a problem trying to load page "
                         "summaries inside of ‘org2blog-user-login’."))
         (format "%s" err))
-       (throw 'return nil)))
-    (setq org2blog-logged-in t)
-    (message "You are now logged in to your blog “%s”"
-             org2blog-blog-key)))
+       (throw 'return nil)))))
 
 ;;;###autoload
 (defun org2blog-user-logout()
